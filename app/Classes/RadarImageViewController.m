@@ -68,7 +68,7 @@
   TTURLRequest *request = [TTURLRequest requestWithURL:urlString delegate:self];
   request.httpMethod = @"GET";
   request.response = [[[TTURLDataResponse alloc] init] autorelease];
-  request.userInfo = [TTUserInfo topic:@"labels" strong:nil weak:self];
+  request.userInfo = [TTUserInfo topic:@"labels" strongRef:nil weakRef:self];
   [request send];
 }
 
@@ -94,7 +94,7 @@
   TTURLRequest *request = [TTURLRequest requestWithURL:[url absoluteString] delegate:self];
   request.httpMethod = @"GET";
   request.response = [[[TTURLImageResponse alloc] init] autorelease];
-  request.userInfo = [TTUserInfo topic:@"page" strong:requestInfo weak:self];
+  request.userInfo = [TTUserInfo topic:@"page" strongRef:requestInfo weakRef:self];
   [request send];
 }
 
@@ -119,11 +119,11 @@
   
   NSDictionary *imageAndTitle = [[NSDictionary alloc] initWithObjectsAndKeys:
                                  response.image, @"image",
-                                 [userInfo.strong objectForKey:@"title"], @"title",
+                                 [userInfo.strongRef objectForKey:@"title"], @"title",
                                  nil
                                  ];
   
-  NSNumber *pageNumber = [userInfo.strong objectForKey:@"page"];
+  NSNumber *pageNumber = [userInfo.strongRef objectForKey:@"page"];
   [radarImages setObject:imageAndTitle forKey:pageNumber];
   [imageAndTitle release];
   

@@ -1,5 +1,5 @@
 #import <UIKit/UIKit.h>
-#import <Three20/Three20.h>
+#import "Three20Network/Three20Network.h"
 
 @interface RadarImageViewController : UIViewController <TTURLRequestDelegate> {
   IBOutlet UIImageView *radarImageView;
